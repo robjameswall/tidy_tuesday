@@ -1,0 +1,38 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+Load data
+
+```{r}
+df <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018-11-20/thanksgiving_meals.csv') %>%
+  glimpse()
+```
+
+```{r}
+ggplot(df, aes(prayer, fill = us_region)) +
+  geom_bar()
+```
+
+```{r}
+unique(df$kids_table_age)
+```
+
+```{r}
+ggplot(df, aes(kids_table_age, fill = us_region)) +
+  geom_bar()
+```
+
+
+```{r}
+df %>%
+  mutate(kids_table_age = if_else(kids_table_age == "10 or younger", "10", kids_table_age),
+         kids_table_age = if_else(kids_table_age == "10 or younger", "10", kids_table_age))
+```
+
